@@ -1,0 +1,14 @@
+{
+    // This is a library.
+    "extends": "../../r5t-Paris/source/tsconfig-base.json",
+    "compilerOptions": {
+        "outDir": "output",
+    },
+    "include": [
+        "ts/**/*"
+    ],
+    "exclude": [
+        "node_modules",
+        "**/*.spec.ts"
+    ]
+}
