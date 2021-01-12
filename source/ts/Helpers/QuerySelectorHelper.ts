@@ -36,4 +36,10 @@ export class QuerySelectorHelper
         let output = QuerySelectorHelper.ClassSelectorPrefix + className;
         return output;
     }
+
+    public static GetDocumentElementByID<T extends Element>(elementIDValue: string): T
+    {
+        let output = document.querySelector(QuerySelectorHelper.GetIDSelector(elementIDValue)) as T;
+        return output;
+    }
 }
