@@ -1,3 +1,5 @@
+import { ArrayHelper } from "./ArrayHelper";
+
 export class QuerySelectorHelper
 {
     public static readonly ClassSelectorPrefix = ".";
@@ -39,7 +41,88 @@ export class QuerySelectorHelper
 
     public static GetDocumentElementByID<T extends Element>(elementIDValue: string): T
     {
-        let output = document.querySelector(QuerySelectorHelper.GetIDSelector(elementIDValue)) as T;
+        let idSelector = QuerySelectorHelper.GetIDSelector(elementIDValue);
+
+        let output = document.querySelector(idSelector) as T;
         return output;
+    }
+
+    public static GetDocumentElementsUntypedByClassName(className: string): NodeListOf<Element>
+    {
+        let classSelector = QuerySelectorHelper.GetClassSelector(className);
+
+        let nodeList = document.querySelectorAll(classSelector);
+        return nodeList;
+    }
+
+    public static GetDocumentElementsOfTypeByClassName<T extends Element>(className: string): T[]
+    {
+        let classSelector = QuerySelectorHelper.GetClassSelector(className);
+
+        let nodeList = document.querySelectorAll(classSelector);
+
+        let elements = Array.from(nodeList) as T[];
+        return elements;
+    }
+
+    /**
+     * Default method for getting document elements by class name returns a typed array.
+     */
+    public static GetDocumentElementsByClassName<T extends Element>(className: string): T[]
+    {
+        let output = QuerySelectorHelper.GetDocumentElementsOfTypeByClassName<T>(className);
+        return output;
+    }
+
+    public static GetChildElementsOfTypeByClassName<T extends Element>(parent: Element, className: string): T[]
+    {
+        let classSelector = QuerySelectorHelper.GetClassSelector(className);
+
+        let nodeList = parent.querySelectorAll(classSelector);
+
+        let elements = Array.from(nodeList) as T[];
+        return elements;
+    }
+
+    /**
+     * Default method for getting child elements by class name returns a typed array.
+     */
+    public static GetChildElementsByClassName<T extends Element>(parent: Element, className: string): T[]
+    {
+        let output = QuerySelectorHelper.GetChildElementsOfTypeByClassName<T>(parent, className);
+        return output;
+    }
+
+    public static GetChildElementByClassNameFirst<T extends Element>(parent: Element, className: string): T
+    {
+        let classSelector = QuerySelectorHelper.GetClassSelector(className);
+
+        let childElement = parent.querySelector(classSelector) as T;
+        return childElement;
+    }
+
+    /**
+     * Ensures there is only a single child element with the class name;
+     */
+    public static GetChildElementByClassNameSingle<T extends Element>(parent: Element, className: string): T
+    {
+        let childElementsOfClass = QuerySelectorHelper.GetChildElementsByClassName<T>(parent, className);
+
+        if(ArrayHelper.MoreThanOne(childElementsOfClass))
+        {
+            throw "Query single of child elements returned more than one element.";
+        }
+
+        let childElement = ArrayHelper.First(childElementsOfClass);
+        return childElement;
+    }
+
+    /**
+     * Default method uses single method (meaning an error is thrown if there is more than one child element with the given class name).
+     */
+    public static GetChildElementByClassName<T extends Element>(parent: Element, className: string): T
+    {
+        let childElement = QuerySelectorHelper.GetChildElementByClassNameSingle<T>(parent, className);
+        return childElement;
     }
 }

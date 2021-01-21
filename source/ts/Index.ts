@@ -1,4 +1,5 @@
 export * from "./Classes/RequestBuilder";
+export * from "./Classes/Timer";
 export * from  "./Helpers/ArrayHelper";
 export * from "./Helpers/DictionaryHelper";
 export * from "./Helpers/EnvironmentHelper";
@@ -10,4 +11,5 @@ export * from "./Helpers/NumberHelper";
 export * from "./Helpers/QuerySelectorHelper";
 export * from "./Helpers/RequestInitHelper";
 export * from "./Helpers/StringHelper";
+export * from "./Helpers/TimeHelper";
 export * from "./Utilities";

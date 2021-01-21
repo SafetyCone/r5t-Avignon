@@ -3,12 +3,29 @@ export class ArrayHelper
     public static readonly IndexNotFound = -1;
 
 
-    public static WasFound(index: number)
+    public static Any<T>(array: Array<T>): boolean
     {
-        let wasFound = index > ArrayHelper.IndexNotFound;
-        return wasFound;
+        let anyElements = array.length > 0;
+        return anyElements;
     }
 
+    public static First<T>(array: Array<T>): T
+    {
+        let first = array[0];
+        return first;
+    }
+
+    public static MoreThanOne<T>(array: Array<T>): boolean
+    {
+        let moreThanOne = array.length > 1;
+        return moreThanOne;
+    }
+
+    public static None<T>(array: Array<T>): boolean
+    {
+        let none = array.length < 1;
+        return none;
+    }
 
     public static RemoveFirstValue<T>(array: Array<T>, value: T)
     {
@@ -22,5 +39,11 @@ export class ArrayHelper
     public static RemoveValue<T>(array: Array<T>, value: T)
     {
         ArrayHelper.RemoveFirstValue(array, value);
+    }
+
+    public static WasFound(index: number)
+    {
+        let wasFound = index > ArrayHelper.IndexNotFound;
+        return wasFound;
     }
 }
