@@ -82,4 +82,16 @@ export class NumberHelper
         let output = NumberHelper.ToStringWithUnitsPluralizedWithS(number, unitSingular);
         return output;
     }
+
+    public static IntegerFromString(integerAsString: string)
+    {
+        let output = parseInt(integerAsString);
+        return output;
+    }
+
+    public static FloatFromString(floatAsString: string)
+    {
+        let output = parseFloat(floatAsString);
+        return output;
+    }
 }

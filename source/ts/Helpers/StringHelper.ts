@@ -1,3 +1,5 @@
+import { NumberHelper } from "./NumberHelper";
+
 export class StringHelper
 {
     public static readonly Empty = "";
@@ -19,5 +21,17 @@ export class StringHelper
     {
         let pluralOfUnit = `${unit}s`;
         return pluralOfUnit;
+    }
+
+    public static ToInteger(value: string)
+    {
+        let output = NumberHelper.IntegerFromString(value);
+        return output;
+    }
+
+    public static ToFloat(value: string)
+    {
+        let output = NumberHelper.FloatFromString(value);
+        return output;
     }
 }
