@@ -74,6 +74,18 @@ export class NumberHelper
         }
     }
 
+    public static ChooseUnits(number: number, unitsSingular: string, unitsPlural: string)
+    {
+        if(number == 1)
+        {
+            return unitsSingular;
+        }
+        else
+        {
+            return unitsPlural;
+        }
+    }
+
     /**
      * Chooses the units-pluralized-with-S method as the default.
      */
