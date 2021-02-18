@@ -3,6 +3,7 @@ import { NumberHelper } from "./NumberHelper";
 export class StringHelper
 {
     public static readonly Empty = "";
+    public static readonly Space = " ";
 
 
     public static IsEmpty(string: string): boolean

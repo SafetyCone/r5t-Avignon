@@ -1,6 +1,6 @@
 {
     // This is a library.
-    "extends": "../../r5t-Paris/source/tsconfig-base.json",
+    "extends": "../../../r5t-Paris/source/r5t-Paris/tsconfig-base.json",
     "compilerOptions": {
         "outDir": "output",
     },

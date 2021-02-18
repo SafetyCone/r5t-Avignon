@@ -1,6 +1,7 @@
 export * from "./Classes/RequestBuilder";
 export * from "./Classes/Timer";
 export * from "./Classes/TimeSpan";
+export * from "./Classes/ValidationResult";
 export * from "./Extensions/ArrayExtensions";
 export * from "./Helpers/ArrayHelper";
 export * from "./Helpers/DateHelper";
@@ -18,5 +19,6 @@ export * from "./Helpers/TimeHelper";
 export * from "./Helpers/TimeSpanHelper";
 export * from "./Types/DateFormatter";
 export * from "./Types/DateString";
+export * from "./Types/ElementSelector";
 export * from "./Types/TimeSpanFormatter";
 export * from "./Utilities";

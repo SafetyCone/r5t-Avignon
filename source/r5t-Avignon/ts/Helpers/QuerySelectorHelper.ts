@@ -125,4 +125,10 @@ export class QuerySelectorHelper
         let childElement = QuerySelectorHelper.GetChildElementByClassNameSingle<T>(parent, className);
         return childElement;
     }
+
+    public static GetDescendentElementByClassName<T extends Element>(parent: Element, className: string): T
+    {
+        let childElement = QuerySelectorHelper.GetChildElementByClassNameSingle<T>(parent, className);
+        return childElement;
+    }
 }
