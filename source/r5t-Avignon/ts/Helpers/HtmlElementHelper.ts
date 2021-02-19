@@ -70,6 +70,12 @@ export class HtmlElementHelper
         element.innerHTML = "";
     }
 
+    public static GetContent(element: HTMLElement): string
+    {
+        let output = element.innerHTML;
+        return output;
+    }
+
     public static SetContent(element: HTMLElement, content: string)
     {
         element.innerHTML = content;
