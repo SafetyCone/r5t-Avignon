@@ -1,35 +1,41 @@
 export class JsonHelper
 {
-      public static TryParseAny(possiblyJson: string)
-      {
-          let result: any;
-          let success = true;
-          try
-          {
-              result = JSON.parse(possiblyJson);
-          }
-          catch (e)
-          {
-              success = false;
-          }
+    public static Parse<T>(jsonString: string)
+    {
+        let output = JSON.parse(jsonString) as T;
+        return output;
+    }
 
-          let output = {
-              success: success,
-              result: result,
-          };
-          return output;
-      }
+    public static TryParseAny(possiblyJson: string)
+    {
+        let result: any;
+        let success = true;
+        try
+        {
+            result = JSON.parse(possiblyJson);
+        }
+        catch (e)
+        {
+            success = false;
+        }
 
-      public static TryParse<T>(possibleJson: string)
-      {
-          let tryParseResult = JsonHelper.TryParseAny(possibleJson);
+        let output = {
+            success: success,
+            result: result,
+        };
+        return output;
+    }
 
-          let resultAsT = tryParseResult.result as T;
+    public static TryParse<T>(possibleJson: string)
+    {
+        let tryParseResult = JsonHelper.TryParseAny(possibleJson);
 
-          let output = {
-              success: tryParseResult.success,
-              result: resultAsT,
-          };
-          return output;
-      }
+        let resultAsT = tryParseResult.result as T;
+
+        let output = {
+            success: tryParseResult.success,
+            result: resultAsT,
+        };
+        return output;
+    }
 }
