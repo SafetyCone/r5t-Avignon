@@ -27,4 +27,5 @@ export * from "./Types/ElementSelector";
 export * from "./Types/Tasks";
 export * from "./Types/TimeSpanFormatter";
 export * from "./Types/ValueType";
+export * from "./Wrappers/AnchorWrapper";
 export * from "./Utilities";

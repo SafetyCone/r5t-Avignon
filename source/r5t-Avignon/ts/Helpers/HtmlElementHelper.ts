@@ -80,4 +80,14 @@ export class HtmlElementHelper
     {
         element.innerHTML = content;
     }
+    
+    public static SetValueForSpan(span: HTMLSpanElement, value: string)
+    {
+        span.innerHTML = value;
+    }
+
+    public static SetValueForParagraph(paragraph: HTMLParagraphElement, value: string)
+    {
+        paragraph.innerHTML = value;
+    }
 }
