@@ -1,9 +1,11 @@
+import { JavaScriptHelper } from "./JavaScriptHelper";
 import { NumberHelper } from "./NumberHelper";
 
 export class StringHelper
 {
     public static readonly Empty = "";
     public static readonly Space = " ";
+    public static readonly Undefined = "undefined";
 
 
     public static IsEmpty(string: string): boolean
@@ -33,6 +35,28 @@ export class StringHelper
     public static ToFloat(value: string)
     {
         let output = NumberHelper.FloatFromString(value);
+        return output;
+    }
+
+    public static EmptyIfUndefined(value: string)
+    {
+        if(JavaScriptHelper.IsUndefined(value))
+        {
+            return StringHelper.Empty;
+        }
+
+        return value;
+    }
+
+    public static IsDefinedNonNullNonEmpty(value: string)
+    {
+        let output = JavaScriptHelper.IsDefined(value) && JavaScriptHelper.IsNonNull(value) && StringHelper.IsNonEmpty(value);
+        return output;
+    }
+
+    public static HasValue(value: string)
+    {
+        let output = StringHelper.IsDefinedNonNullNonEmpty(value);
         return output;
     }
 }

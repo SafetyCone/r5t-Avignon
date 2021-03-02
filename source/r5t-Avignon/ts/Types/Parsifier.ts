@@ -1,0 +1,1 @@
+export type Parsifier<T> = (representation: string) => T;

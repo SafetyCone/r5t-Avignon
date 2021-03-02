@@ -8,19 +8,41 @@ export class AnchorWrapper
     {
         this.Anchor.href = value;
     }
-    
-    public get Content(): string
+
+    public get ContentText(): string
+    {
+        return this.Anchor.innerText;
+    }
+    public set ContentText(value: string)
+    {
+        this.Anchor.innerText = value;
+    }
+
+    public get ContentHtml(): string
     {
         return this.Anchor.innerHTML;
     }
-    public set Content(value: string)
+    public set ContentHtml(value: string)
     {
         this.Anchor.innerHTML = value;
+    }
+    
+    /**
+     * Defaults to text content.
+     */
+    public get Content(): string
+    {
+        return this.ContentText;
+    }
+    public set Content(value: string)
+    {
+        this.ContentText = value;
     }
 
 
     constructor(
         public readonly Anchor: HTMLAnchorElement)
     {
+        
     }
 }

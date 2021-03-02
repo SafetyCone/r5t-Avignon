@@ -3,6 +3,30 @@ import { StringHelper } from "./StringHelper";
 
 export class HtmlElementHelper
 {
+    public static SelectFirstChild(htmlElement: HTMLElement)
+    {
+        let firstChild = htmlElement.firstElementChild;
+        return firstChild;
+    }
+
+    public static SelectFirstChildAs<T extends HTMLElement>(htmlElement: HTMLElement)
+    {
+        let firstChild = HtmlElementHelper.SelectFirstChild(htmlElement) as T;
+        return firstChild;
+    }
+
+    public static SelectNextSibling(htmlElement: HTMLElement)
+    {
+        let nextSibling = htmlElement.nextElementSibling;
+        return nextSibling;
+    }
+
+    public static SelectNextSiblingAs<T extends HTMLElement>(htmlElement: HTMLElement)
+    {
+        let nextSibling = HtmlElementHelper.SelectNextSibling(htmlElement) as T;
+        return nextSibling;
+    }
+
     public static SelectParent(htmlElement: HTMLElement)
     {
         let parent = htmlElement.parentElement;
@@ -83,11 +107,11 @@ export class HtmlElementHelper
     
     public static SetValueForSpan(span: HTMLSpanElement, value: string)
     {
-        span.innerHTML = value;
+        span.innerText = value;
     }
 
     public static SetValueForParagraph(paragraph: HTMLParagraphElement, value: string)
     {
-        paragraph.innerHTML = value;
+        paragraph.innerText = value;
     }
 }

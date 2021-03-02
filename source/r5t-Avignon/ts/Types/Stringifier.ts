@@ -1,0 +1,1 @@
+export type Stringifier<T> = (value: T) => string;
