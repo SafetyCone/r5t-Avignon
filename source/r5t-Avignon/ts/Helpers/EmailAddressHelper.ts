@@ -9,7 +9,7 @@ export class EmailAddressHelper
 
     public static GetNotValidEmailAddressMessage(value: string)
     {
-        let message = `The value '${value}' was not a valid email address.`;
+        let message = `The value '${value}' is not a valid email address.`;
         return message;
     }
 }
