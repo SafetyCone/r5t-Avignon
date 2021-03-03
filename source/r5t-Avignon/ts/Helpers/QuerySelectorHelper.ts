@@ -131,4 +131,12 @@ export class QuerySelectorHelper
         let childElement = QuerySelectorHelper.GetChildElementByClassNameSingle<T>(parent, className);
         return childElement;
     }
+
+    public static GetChildElementByID<T extends Element>(parent: Element, elementIDValue: string): T
+    {
+        let idSelector = QuerySelectorHelper.GetIDSelector(elementIDValue);
+
+        let output = parent.querySelector(idSelector) as T;
+        return output;
+    }
 }

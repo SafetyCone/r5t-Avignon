@@ -11,6 +11,7 @@ export * from "./Helpers/ActionHelper";
 export * from "./Helpers/ArrayHelper";
 export * from "./Helpers/DateHelper";
 export * from "./Helpers/DictionaryHelper";
+export * from "./Helpers/EmailAddressHelper";
 export * from "./Helpers/EnvironmentHelper";
 export * from "./Helpers/EventHelper";
 export * from "./Helpers/HtmlElementHelper";

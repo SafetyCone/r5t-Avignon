@@ -1,3 +1,4 @@
+import { EmailAddressHelper } from "../Helpers/EmailAddressHelper";
 import { NumberHelper } from "../Helpers/NumberHelper";
 import { PromiseHelper } from "../Helpers/PromiseHelper";
 import { StringHelper } from "../Helpers/StringHelper";
@@ -34,5 +35,17 @@ export class Validation
     {
         let output = Validation.IsFloat(string);
         return output;
+    }
+
+    public static IsEmailAddress(string: string): Promise<ValidationResult>
+    {
+        let isEmailAddress = EmailAddressHelper.IsEmailAddress(string);
+
+        let message = isEmailAddress
+            ? StringHelper.Empty
+            : EmailAddressHelper.GetNotValidEmailAddressMessage(string);
+
+        let result = new ValidationResult(isEmailAddress, message)
+        return PromiseHelper.FromValue(result);
     }
 }
