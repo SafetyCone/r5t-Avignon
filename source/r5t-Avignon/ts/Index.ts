@@ -1,6 +1,8 @@
+export * from "./Classes/CssClassList";
 export * from "./Classes/Parsification";
 export * from "./Classes/RequestBuilder";
 export * from "./Classes/Stringification";
+export * from "./Classes/Strings";
 export * from "./Classes/Timer";
 export * from "./Classes/TimeSpan";
 export * from "./Classes/Validation";
@@ -14,6 +16,7 @@ export * from "./Helpers/DictionaryHelper";
 export * from "./Helpers/EmailAddressHelper";
 export * from "./Helpers/EnvironmentHelper";
 export * from "./Helpers/EventHelper";
+export * from "./Helpers/HtmlAttributeHelper";
 export * from "./Helpers/HtmlElementHelper";
 export * from "./Helpers/HtmlHelper";
 export * from "./Helpers/JavaScriptHelper";
