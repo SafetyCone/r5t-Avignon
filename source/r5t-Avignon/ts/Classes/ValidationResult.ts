@@ -1,8 +1,8 @@
-import { StringHelper } from "../Helpers/StringHelper";
+import { Strings } from "./Strings";
 
 export class ValidationResult
 {
-    public static From(isValid: boolean, message: string = StringHelper.Empty)
+    public static From(isValid: boolean, message: string = Strings.Empty)
     {
         let validationResult = new ValidationResult(isValid, message);
         return validationResult;

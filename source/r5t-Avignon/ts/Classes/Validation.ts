@@ -1,7 +1,7 @@
 import { EmailAddressHelper } from "../Helpers/EmailAddressHelper";
 import { NumberHelper } from "../Helpers/NumberHelper";
 import { PromiseHelper } from "../Helpers/PromiseHelper";
-import { StringHelper } from "../Helpers/StringHelper";
+import { Strings } from "./Strings";
 import { ValidationResult } from "./ValidationResult";
 
 // Note, methods are asynchronous to support the Validator type.
@@ -12,7 +12,7 @@ export class Validation
         let parseResult = NumberHelper.TryParseInteger(string);
 
         let message = parseResult.Success
-            ? StringHelper.Empty
+            ? Strings.Empty
             : NumberHelper.GetParseIntegerErrorMessage(string);
         
         let validationResult = new ValidationResult(parseResult.Success, message);
@@ -24,7 +24,7 @@ export class Validation
         let parseResult = NumberHelper.TryParseFloat(string);
 
         let message = parseResult.Success
-            ? StringHelper.Empty
+            ? Strings.Empty
             : NumberHelper.GetParseFloatErrorMessage(string);
         
         let validationResult = new ValidationResult(parseResult.Success, message);
@@ -42,7 +42,7 @@ export class Validation
         let isEmailAddress = EmailAddressHelper.IsEmailAddress(string);
 
         let message = isEmailAddress
-            ? StringHelper.Empty
+            ? Strings.Empty
             : EmailAddressHelper.GetNotValidEmailAddressMessage(string);
 
         let result = new ValidationResult(isEmailAddress, message)

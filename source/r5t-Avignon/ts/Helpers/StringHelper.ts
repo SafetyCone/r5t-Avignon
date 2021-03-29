@@ -1,16 +1,12 @@
+import { Strings } from "../Classes/Strings";
 import { JavaScriptHelper } from "./JavaScriptHelper";
 import { NumberHelper } from "./NumberHelper";
 
 export class StringHelper
 {
-    public static readonly Empty = "";
-    public static readonly Space = " ";
-    public static readonly Undefined = "undefined";
-
-
     public static IsEmpty(string: string): boolean
     {
-        let output = string == StringHelper.Empty;
+        let output = string == Strings.Empty;
         return output;
     }
 
@@ -42,7 +38,7 @@ export class StringHelper
     {
         if(JavaScriptHelper.IsUndefined(value))
         {
-            return StringHelper.Empty;
+            return Strings.Empty;
         }
 
         return value;
