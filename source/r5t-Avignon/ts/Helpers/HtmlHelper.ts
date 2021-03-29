@@ -32,10 +32,26 @@ export class HtmlHelper
      */
     public static StringToHtmlUsingDOMParser(htmlText: string): HTMLBodyElement
     {
-        var parser = new DOMParser();
-        var document = parser.parseFromString(htmlText, "text/html");
+        let parser = new DOMParser();
+        let document = parser.parseFromString(htmlText, "text/html");
         
         return document.body as HTMLBodyElement;
+    }
+
+    public static StringToDocumentUsingDOMParser(htmlText: string): Document
+    {
+        let parser = new DOMParser();
+        let document = parser.parseFromString(htmlText, "text/html");
+        return document;
+    }
+
+    /**
+     * Uses StringToDocumentUsingDOMParser() as the default.
+     */
+    public static StringToDocument(htmlText: string): Document
+    {
+        let document = HtmlHelper.StringToDocumentUsingDOMParser(htmlText);
+        return document;
     }
 
     /**
