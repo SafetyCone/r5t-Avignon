@@ -74,6 +74,12 @@ export class QuerySelectorHelper
         return output;
     }
 
+    public static GetChildElementBySelector<T extends Element>(parent: ParentNode, selector: string)
+    {
+        let element = parent.querySelector(selector) as T;
+        return element;
+    }
+
     public static GetChildElementsOfTypeByClassName<T extends Element>(parent: Element, className: string): T[]
     {
         let classSelector = QuerySelectorHelper.GetClassSelector(className);
@@ -95,9 +101,9 @@ export class QuerySelectorHelper
 
     public static GetChildElementByClassNameFirst<T extends Element>(parent: Element, className: string): T
     {
-        let classSelector = QuerySelectorHelper.GetClassSelector(className);
+        let selector = QuerySelectorHelper.GetClassSelector(className);
 
-        let childElement = parent.querySelector(classSelector) as T;
+        let childElement = QuerySelectorHelper.GetChildElementBySelector<T>(parent, selector);
         return childElement;
     }
 
