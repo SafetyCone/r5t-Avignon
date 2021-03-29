@@ -1,3 +1,4 @@
+import { CssClassList } from "../Classes/CssClassList";
 import { JavaScriptHelper } from "./JavaScriptHelper";
 import { StringHelper } from "./StringHelper";
 
@@ -65,16 +66,25 @@ export class HtmlElementHelper
         }
     }
 
+    public static AddCssClass(element: HTMLElement, addClass: string)
+    {
+        element.classList.add(addClass);
+    }
+
+    public static RemoveCssClass(element: HTMLElement, removeClass: string)
+    {
+        element.classList.remove(removeClass);
+    }
+
+    public static AddAndRemoveCssClass(element: HTMLElement, addClass: string, removeClass: string)
+    {
+        HtmlElementHelper.AddCssClass(element, addClass);
+        HtmlElementHelper.RemoveCssClass(element, removeClass);
+    }
+
     public static AddCssClasses(element: HTMLElement, cssClasses: string[])
     {
         element.classList.add(...cssClasses);
-    }
-
-    public static AddCssClassesString(element: HTMLElement, cssClassesString: string)
-    {
-        let cssClasses = cssClassesString.split(StringHelper.Space);
-
-        HtmlElementHelper.AddCssClasses(element, cssClasses);
     }
 
     public static RemoveCssClasses(element: HTMLElement, cssClasses: string[])
@@ -82,9 +92,22 @@ export class HtmlElementHelper
         element.classList.remove(...cssClasses);
     }
 
+    public static AddAndRemoveCssClasses(element: HTMLElement, addCssClasses: string[], removeCssClasses: string[])
+    {
+        HtmlElementHelper.AddCssClasses(element, addCssClasses);
+        HtmlElementHelper.RemoveCssClasses(element, removeCssClasses);
+    }
+
+    public static AddCssClassesString(element: HTMLElement, cssClassesString: string)
+    {
+        let cssClasses = CssClassList.ClassesFrom(cssClassesString);
+
+        HtmlElementHelper.AddCssClasses(element, cssClasses);
+    }
+
     public static RemoveCssClassesString(element: HTMLElement, cssClassesString: string)
     {
-        let cssClasses = cssClassesString.split(StringHelper.Space);
+        let cssClasses = CssClassList.ClassesFrom(cssClassesString);
 
         HtmlElementHelper.RemoveCssClasses(element, cssClasses);
     }
@@ -108,6 +131,12 @@ export class HtmlElementHelper
     public static SetValueForSpan(span: HTMLSpanElement, value: string)
     {
         span.innerText = value;
+    }
+
+    public static GetValueForParagraph(paragraph: HTMLParagraphElement)
+    {
+        let output = paragraph.innerText;
+        return output;
     }
 
     public static SetValueForParagraph(paragraph: HTMLParagraphElement, value: string)
