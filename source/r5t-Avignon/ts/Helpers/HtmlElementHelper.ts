@@ -66,6 +66,12 @@ export class HtmlElementHelper
         }
     }
 
+    public static HasClass(element: HTMLElement, className: string)
+    {
+        let output = element.classList.contains(className);
+        return output;
+    }
+
     public static AddCssClass(element: HTMLElement, addClass: string)
     {
         element.classList.add(addClass);
