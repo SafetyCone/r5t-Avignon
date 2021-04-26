@@ -2,25 +2,36 @@ import { Strings } from "../Classes/Strings";
 
 export class HtmlAttributeHelper
 {
-    public static GetAttributeValue(node: Element, attributeName: string)
+    public static GetAttributeValue(element: Element, attributeName: string)
     {
-        let output = node.attributes.getNamedItem(attributeName).value;
+        let output = element.attributes.getNamedItem(attributeName).value;
         return output;
     }
 
-    public static HasAttributeValue(node: Element, attributeName: string)
+    public static GetAttributeValueOrDefault(element: Element, attributeName: string, defaultValue = Strings.Empty)
     {
-        let output = node.hasAttribute(attributeName);
+        let hasAttributeValue = HtmlAttributeHelper.HasAttributeValue(element, attributeName);
+        
+        let output = hasAttributeValue
+            ? HtmlAttributeHelper.GetAttributeValue(element, attributeName)
+            : defaultValue;
+        return output;  
+    }
+
+    public static HasAttributeValue(element: Element, attributeName: string)
+    {
+        let output = element.hasAttribute(attributeName);
         return output;
     }
 
-    public static RemoveAttribute(node: Element, attributeName: string)
+    public static RemoveAttribute(element: Element, attributeName: string)
     {
-        node.removeAttribute(attributeName);
+        element.removeAttribute(attributeName);
+        
     }
 
-    public static SetValuelessAttribute(node: Element, attributeName: string)
+    public static SetValuelessAttribute(element: Element, attributeName: string)
     {
-        node.setAttribute(attributeName, Strings.Empty);
+        element.setAttribute(attributeName, Strings.Empty);
     }
 }

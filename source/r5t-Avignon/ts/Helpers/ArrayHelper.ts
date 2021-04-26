@@ -15,6 +15,14 @@ export class ArrayHelper
         return first;
     }
 
+    public static IsEmpty<T>(array: Array<T>): boolean
+    {
+        let any = ArrayHelper.Any(array);
+
+        let isEmpty = !any;
+        return isEmpty;
+    }
+
     public static MoreThanOne<T>(array: Array<T>): boolean
     {
         let moreThanOne = array.length > 1;

@@ -55,4 +55,10 @@ export class StringHelper
         let output = StringHelper.IsDefinedNonNullNonEmpty(value);
         return output;
     }
+
+    public static HasNoValue(value: string)
+    {
+        let output = !StringHelper.HasValue(value);
+        return output;
+    }
 }

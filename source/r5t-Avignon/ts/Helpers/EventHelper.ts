@@ -3,10 +3,18 @@ import { HtmlElementEvent } from "../Types/HtmlElementEvent";
 export class EventHelper
 {
     public static readonly ChangeEventName = "change";
+    public static readonly ClickEventName = "click";
+    
 
     public static NewChangeEvent()
     {
         let event = new Event(EventHelper.ChangeEventName);
+        return event;
+    }
+
+    public static NewClickEvent()
+    {
+        let event = new Event(EventHelper.ClickEventName);
         return event;
     }
 
