@@ -1,46 +1,30 @@
-import { JavaScriptHelper } from "./JavaScriptHelper";
+import { RequestInitExtensions } from "../Extensions/RequestInitExtensions";
 
 export class RequestInitHelper
 {
-    public static EnsureHeadersExists(requestInit: RequestInit)
-    {
-        if(!JavaScriptHelper.Exists(requestInit.headers))
-        {
-            requestInit.headers = {};
-        }
-    }
-
-    public static NewRequestInit(): RequestInit
+    public static NewRequest(): RequestInit
     {
         let requestInit = {
-            headers: {} // Help out by making the headers key exist.
+            headers: {} // Help out by creating the headers key so it exists.
         };
         return requestInit;
     }
 
-    public static AddHeader(requestInit: RequestInit, headerKey: string, headerValue: string)
+    public static NewGetRequest()
     {
-        RequestInitHelper.EnsureHeadersExists(requestInit);
+        let requestInit = RequestInitHelper.NewRequest();
 
-        requestInit.headers[headerKey] = headerValue;
+        RequestInitExtensions.SetMethodGet(requestInit);
+
+        return requestInit;
     }
 
-    public static SetMethod(requestInit: RequestInit, method: "GET" | "POST")
+    public static NewPostRequest()
     {
-        requestInit.method = method;
-    }
+        let requestInit = RequestInitHelper.NewRequest();
 
-    public static SetJsonApplicationContentType(requestInit: RequestInit)
-    {
-        RequestInitHelper.AddHeader(requestInit, "Content-Type", "application/json");
-    }
+        RequestInitExtensions.SetMethodPost(requestInit);
 
-    public static SetJsonBodyPost(requestInit: RequestInit, body: any)
-    {
-        let bodyJson = JSON.stringify(body);
-
-        RequestInitHelper.SetMethod(requestInit, "POST");
-        RequestInitHelper.SetJsonApplicationContentType(requestInit);
-        requestInit.body = bodyJson;
+        return requestInit;
     }
 }
