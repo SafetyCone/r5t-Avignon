@@ -1,0 +1,1 @@
+export type FunctionOut<T> = () => T;
