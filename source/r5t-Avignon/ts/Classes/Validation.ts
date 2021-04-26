@@ -37,7 +37,7 @@ export class Validation
         return output;
     }
 
-    public static IsEmailAddress(string: string): Promise<ValidationResult>
+    public static IsEmailAddress_Synchronous(string: string): ValidationResult
     {
         let isEmailAddress = EmailAddressHelper.IsEmailAddress(string);
 
@@ -45,7 +45,14 @@ export class Validation
             ? Strings.Empty
             : EmailAddressHelper.GetNotValidEmailAddressMessage(string);
 
-        let result = new ValidationResult(isEmailAddress, message)
+        let result = new ValidationResult(isEmailAddress, message);
+        return result;
+    }
+
+    public static IsEmailAddress(string: string): Promise<ValidationResult>
+    {
+        let result = Validation.IsEmailAddress_Synchronous(string);
+        
         return PromiseHelper.FromValue(result);
     }
 }

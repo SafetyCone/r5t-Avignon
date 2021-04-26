@@ -16,6 +16,6 @@ export class RequestBuilder
     constructor(url: string)
     {
         this.Url = url;
-        this.RequestInit = RequestInitHelper.NewRequestInit();
+        this.RequestInit = RequestInitHelper.NewRequest();
     }
 }
