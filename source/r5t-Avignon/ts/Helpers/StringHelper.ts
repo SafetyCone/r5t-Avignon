@@ -4,6 +4,11 @@ import { NumberHelper } from "./NumberHelper";
 
 export class StringHelper
 {
+    public static IsString(x: any): x is string
+    {
+        return typeof x === "string";
+    }
+
     public static IsEmpty(string: string): boolean
     {
         let output = string == Strings.Empty;
