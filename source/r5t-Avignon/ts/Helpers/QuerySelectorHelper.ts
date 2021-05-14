@@ -104,6 +104,19 @@ export class QuerySelectorHelper
         return output;
     }
 
+    public static GetDocumentElementsByClassNameOrEmpty<T extends Element>(className: string): T[]
+    {
+        // TODO – overhaul this in favor of using HasDocumentElement* to check ,rather than try/catch
+        let output = [];
+        try {
+            output = QuerySelectorHelper.GetDocumentElementsOfTypeByClassName<T>(className);
+            
+        } catch (Error) {
+            // don't do anything, just return empty list.
+        }
+        return output;
+    }
+
     public static GetChildElementBySelector<T extends Element>(parent: ParentNode, selector: string)
     {
         let element = parent.querySelector(selector) as T;
@@ -192,5 +205,76 @@ export class QuerySelectorHelper
 
         let output = QuerySelectorHelper.GetChildElementBySelector<T>(parent, selector);
         return output;
+    }
+
+    public static HasChildElementBySelector<T extends Element>(parent: ParentNode, selector: string): boolean
+    {
+        let element = parent.querySelector(selector) as T;
+        let hasElement = !QuerySelectorHelper.IsNotFound(element);
+        return hasElement;
+    }
+
+    public static HasChildElementsBySelector<T extends Element>(parent: ParentNode, selector: string): boolean
+    {
+        let nodeList = parent.querySelectorAll(selector);
+
+        let elements = Array.from(nodeList) as T[];
+        let hasElements = !QuerySelectorHelper.IsNotFoundArray(elements);
+        return hasElements;
+    }
+
+    public static HasChildElementsOfTypeByClassName<T extends Element>(parent: ParentNode, className: string): boolean
+    {
+        let classSelector = QuerySelectorHelper.GetClassSelector(className);
+
+        let hasElements = QuerySelectorHelper.HasChildElementsBySelector<T>(parent, classSelector);
+        return hasElements;
+    }
+
+    /**
+     * Default method for Hasting child elements by class name returns a typed array.
+     */
+    public static HasChildElementsByClassName<T extends Element>(parent: ParentNode, className: string): boolean
+    {
+        let output = QuerySelectorHelper.HasChildElementsOfTypeByClassName<T>(parent, className);
+        return output;
+    }
+
+    public static HasChildElementByClassNameFirst<T extends Element>(parent: ParentNode, className: string): boolean
+    {
+        let selector = QuerySelectorHelper.GetClassSelector(className);
+
+        let childElement = QuerySelectorHelper.HasChildElementBySelector<T>(parent, selector);
+        return childElement;
+    }
+
+    /**
+     * Ensures there is only a single child element with the class name;
+     */
+    public static HasChildElementByClassNameSingle<T extends Element>(parent: ParentNode, className: string): boolean
+    {
+        let childElementsOfClass = QuerySelectorHelper.HasChildElementsByClassName<T>(parent, className);
+
+        let selector = QuerySelectorHelper.GetClassSelector(className);
+        let nodeList = parent.querySelectorAll(selector);
+
+        let elements = Array.from(nodeList) as T[];
+
+        if(ArrayHelper.MoreThanOne(elements))
+        {
+            throw "Query single of child elements returned more than one element.";
+        }
+
+        let hasElements = !QuerySelectorHelper.IsNotFoundArray(elements);
+        return hasElements;
+    }
+
+    /**
+     * Default method uses single method (meaning an error is thrown if there is more than one child element with the given class name).
+     */
+    public static HasChildElementByClassName<T extends Element>(parent: ParentNode, className: string): boolean
+    {
+        let childElement = QuerySelectorHelper.HasChildElementByClassNameSingle<T>(parent, className);
+        return childElement;
     }
 }
